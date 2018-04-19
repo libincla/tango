@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+
+<html>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<head>
+	<title>  aha </title>
+</head>
+
+<style type="text/css">
+li {text-indent: 2em}
+</style>
+<body>
+	<div>
+	  <h1> Most Liked Categories </h1>
+	  {% if aha %}
+		{% for ele in aha %}
+			<li> <a href="/rango/category/{{ ele.slug }}">{{ ele.name }} </a></li>
+		{% endfor %}	
+	  {% else %}
+	  {% endif %}
+	</div>
+
+	<br>
+	<div>
+	  <h1> Most Viewed Pages </h1>
+	  {% if pagge %}
+		{% for element in pagge %}
+		      <li><a href={{ element.url }}>{{ element }} </a></li>
+		{% endfor %}
+	  {% endif %}
+	</div>
+	<br>
+</body>
+
+<footer>
+	<div>
+		<h1> 回到首页 </h1>
+		<li> <a href="/rango/">首页</a> </li>
+	</div>
+</footer>
+</html>

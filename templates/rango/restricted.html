@@ -1,0 +1,10 @@
+{% extends 'rango/base.html' %}
+
+{% block title_block %}
+    restricted area
+{% endblock %}
+
+{% block body_block %}
+   <h2><strong> Since you are logged in, you can see this text </strong></h2>
+   <li><a href="{% url 'view'  %}"> view </a></li>
+{% endblock %}

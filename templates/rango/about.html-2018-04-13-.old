@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+
+{% load staticfiles %}
+<html>
+    <head>
+	<title>about page </title>
+    </head>
+    <body>
+	<h1> about page </h1>
+	<div> hey about! <br />
+            <strong> {{ my_key }} </strong> <br />
+	<br>
+        </div>
+       	    <img src="{% static "images/logo.png" %}" /> 
+	    <br>
+	    <strong> this tutorial has been put together by {{ your_name }} </strong>
+	<div>
+    </body>
+    <footer>
+        <br>
+	<a href="/rango/">rango页面 </a>
+	<br>
+	<br>
+	<img src={{MEDIA_URL}}miao.png />
+    </footer>
+</html>

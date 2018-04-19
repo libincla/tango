@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+
+{% load staticfiles %}  
+<html>
+    <head>
+        <title> Rango html </title>
+    </head>
+ 
+    <body>
+        <h1> Rango says... </h1>
+        <div>hey there partner!</div>
+
+
+        <div>
+	     {% if categories %}
+		<ul>
+                    {% for category in categories %}
+			<li><a href="/rango/category/{{ category.slug }}"> {{ category.name }} </a> </li>
+                    {% endfor %}
+		</ul>
+	     {% else %}
+		<strong> there are no categories present </strong>
+	     {% endif %}
+	</div>
+
+
+	<div>
+             <a href="/rango/about/">about页面 </a> <br />
+	     <img src="{% static "images/guangtou.png" %}"  alt="Picture of guangtou" />
+
+	     <br>
+	     <img src="{{MEDIA_URL}}logo.png" />
+        </div>
+    </body>
+</html>

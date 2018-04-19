@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+
+{% load staticfiles %}  
+<html>
+    <head>
+        <title> Rango html </title>
+    </head>
+ 
+    <body>
+
+	<div>
+        <h1> Rango says... </h1>
+	  {% if user.is_authenticated %}
+             hello {{ user.username }}
+          {% else %}
+             hello stranger!
+          {% endif %}
+        </div>
+
+
+        <div>
+	    <h1> here is the link </h1>
+	    <a href="/rango/view">view页面</a>
+	</div>
+
+
+	<div>
+	    <h1> there is a form </h1>
+	    <a href="/rango/add_category/"> Add a New Category </a><br />
+        </div>
+	
+
+    </body>
+<footer>
+	<div>
+            <h1> 关于关于 </h1>
+	    <li> <a href="{% url 'about' %}">关于页面</a></li>
+        </div>
+</footer>
+
+</html>
