@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 {% load staticfiles %}
-{% load rango_template_tags %}
 <html>
     <head>
 	<title>
@@ -12,12 +11,6 @@
     </head>
 
     <body>
-        <div>
-	   {% block sidebar_block %}
-              {% get_category_list %}
-           {% endblock %}
-        </div>
-
         {% if user.is_authenticated %}
            hello {{user.username }}
         {% else %}
@@ -27,14 +20,16 @@
 	{% if user.is_authenticated and user.username == "tango"  %}
               <li><a href="{% url 'restricted' %}"> Restricted Page </a></li>
 	      <li> <a href="{% url 'add_category' %}"> 增加新类 </a></li>
-              <li><a href="{% url 'logout' %}">Logout</a></li>
+              <li><a href="{% url 'auth_logout' %}?next=/rango/">click here to logout</a></li>
+              <li><a href="{% url 'password_change' %}">click here to change your password</a></li>
         {% elif user.is_authenticated and user.username != "tango" %}
-              <li><a href="{% url 'logout' %}">Logout</a></li>
+              <li><a href="{% url 'auth_logout' %}">click here to logout</a></li>
               <li><a href="{% url 'view' %}">view</a></li>
+              <li><a href="{% url 'password_change' %}">click here to change your password</a></li>
               <h2><strong> good to see you! </strong></h2>
         {% else %}
-              <li><a href="{% url 'login' %}">Login</a></li>
-              <li><a href="{% url 'register' %}"> Register here! </a></li>
+              <li><a href="{% url 'auth_login' %}">click here to login</a></li>
+	      <li><a href="{% url 'registration_register' %}">Register Here!</a></li>
 	{% endif %}
               <hr />
               <li><a href="{% url 'about' %}"> 关于页面 </a></li>

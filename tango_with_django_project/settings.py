@@ -31,7 +31,7 @@ ALLOWED_HOSTS = []
 TEMPLATE_DIR = os.path.join(BASE_DIR, 'templates')
 
 # static dir 
-STATIC_DIR = os.path.join(BASE_DIR, 'static')
+#STATIC_DIR = os.path.join(BASE_DIR, 'static')
 
 # media dir
 MEDIA_DIR = os.path.join(BASE_DIR, 'media')
@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rango',
+    'registration'
 ]
 
 MIDDLEWARE_CLASSES = [
@@ -138,12 +139,20 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-STATICFILES_DIRS = [STATIC_DIR, ]
+#STATICFILES_DIRS = [STATIC_DIR, ]
+STATICFILES_DIRS = [
+   os.path.join(BASE_DIR, 'static')
+]
 
 
 # media settings
 MEDIA_ROOT = MEDIA_DIR
 MEDIA_URL = '/media/'
 
-LOGIN_URL = '/rango/login/'
 
+
+REGISTRATION_OPEN = True
+ACCOUNT_ACTIVATION_DAYS = 10
+REGISTRATION_AUTO_LOGIN = True
+LOGIN_REDIRECT_URL = '/rango/'
+LOGIN_URL = '/accounts/login/'

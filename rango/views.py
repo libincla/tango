@@ -12,6 +12,7 @@ from django.contrib.auth.decorators import login_required, permission_required
 from django.contrib.auth import logout
 from django.contrib.auth.models import User
 
+from registration.backends.simple.views import RegistrationView
 from datetime import datetime
 
 
@@ -81,6 +82,11 @@ def user_login(request):
     else:
         return render(request, 'rango/login.html', {})
 
+#third party tools views
+class MyRegistrationView(RegistrationView):
+    def get_success_url(self, user):
+        return '/rango/'
+
 # logout
 @login_required
 def user_logout(request):
@@ -138,18 +144,14 @@ def visitor_cookie_handler(request):
 
 def index(request):
     request.session.set_test_cookie()
-    #category_list = Category.objects.order_by('-likes')[:5]
-    #context_dict = {'categories': category_list}
-    #visit = request.COOKIES.get('visits')
-    visit = request.session.get('visits', '1')
-    print('the number of visits: {}'.format(visit))
-    context_dict = {'visits': visit} 
-    response = render(request, 'rango/index.html', context_dict)
-    #visitor_cookie_handler(request, response)
+    context_dict = {'hide': '233'}
+    #visit = request.session.get('visits', '1')
+    #print('the number of visits: {}'.format(visit))
+    #context_dict = {'visits': visit} 
     visitor_cookie_handler(request)
+    context_dict['visits'] = request.session['visits']
+    response = render(request, 'rango/index.html', context=context_dict)
     return response
-    #return render(request, 'rango/index.html', context = context_dict)
-    #return render(request, 'rango/index.html')
 
 #def show_views(request, category_name_slug):
 def show_views(request):
