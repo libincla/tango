@@ -1,0 +1,20 @@
+{% extends 'rango/base.html' %}
+{% load staticfiles %}
+
+{% block title_block %}
+{% endblock %}
+
+
+{% block body_block %}
+	<h1> about page </h1>
+       	    <img src="{% static "images/logo.png" %}" /> 
+	    <br>
+	<div>
+    <footer>
+        <br>
+	<a href="/rango/">rango页面 </a>
+	<br>
+	<br>
+	<img src={{MEDIA_URL}}miao.png />
+    </footer>
+{% endblock %}

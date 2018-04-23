@@ -144,8 +144,8 @@ def visitor_cookie_handler(request):
 
 def index(request):
     request.session.set_test_cookie()
-    context_dict = {'hide': '233'}
     #visit = request.session.get('visits', '1')
+    context_dict = {'hide' : 123}
     #print('the number of visits: {}'.format(visit))
     #context_dict = {'visits': visit} 
     visitor_cookie_handler(request)
