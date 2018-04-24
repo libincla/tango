@@ -1,6 +1,6 @@
 from rango.models import Category
 from rango.models import Page
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from rango.forms import CategoryForm
 from rango.forms import PageForm
@@ -16,6 +16,24 @@ from registration.backends.simple.views import RegistrationView
 from datetime import datetime
 
 from rango.webhose_search import run_query
+
+#How many people view my website
+
+def track_url(request):
+    page_id = None
+    url = '/rango/'
+    if request.method == 'GET':
+        if 'page_id' in request.GET:
+            page_id = request.GET['page_id']
+            try:
+                page = Page.objects.get(id=page_id)
+                page.views = page.views +1
+                page.save()
+                url = page.url
+            except:
+                pass
+    return redirect(url)
+
 
 
 # search feature
