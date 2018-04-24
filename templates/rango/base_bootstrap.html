@@ -85,6 +85,13 @@
                    </a>
                </li>
             {% endif %}
+            {% if user.is_authenticated and  user.username == 'tango' %}
+               <li class="list-group-item list-group-item-action list-group-item-info">
+                   <a class="nav-link" href="{% url 'search' %}">
+                      Search
+                   </a>
+              </li>
+            {% endif %}
           </ul>
      </div>
    </nav>

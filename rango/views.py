@@ -15,6 +15,23 @@ from django.contrib.auth.models import User
 from registration.backends.simple.views import RegistrationView
 from datetime import datetime
 
+from rango.webhose_search import run_query
+
+
+# search feature
+
+def search(request):
+    result_list = []
+    context_dict = {}
+    if request.method == 'POST':
+        query = request.POST['query'].strip()
+        if query:
+            result_list = run_query(query)
+            context_dict['query'] = query
+            context_dict['result_list'] = result_list
+    return render(request, 'rango/search.html', context=context_dict)
+
+
 
 
 # register feature
