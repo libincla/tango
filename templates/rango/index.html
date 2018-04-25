@@ -8,6 +8,12 @@
 
 
 {% block body_block %}
+<input class="input-medium search-query" type="text" name="suggestion" value="" id="suggestion" />
+<ul class="nav nav-list flex-column"> 
+	<li class="nav-item">Type to find a category</li>
+	<form> <li class="nav-item"><input class="search-query form-control" type="text" name="suggestion" value="" id="suggestion" /> </li> </form> 
+</ul>
+<hr> <div id="cats"> </div>
    <div class="jumbotron">
        <h1 class="display-1"> Rango says... </h1>
        {% if user.is_authenticated %}

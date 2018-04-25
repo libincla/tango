@@ -8,4 +8,14 @@ $(document).ready( function() {
   function() {
     $(this).css('color', 'blue');
   });
+  $('#about-btn').click( function(event) {
+    msgstr = $("#msg").html()
+    msgstr = msgstr + "ooo"
+    $("#msg").html(msgstr)
+  });
+  $('#about-btn').click( function(event) {
+    msgstr = $("#fin").html()
+    msgstr = '' 
+    $("#fin").html(msgstr)
+  });
 });

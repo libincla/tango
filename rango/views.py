@@ -35,6 +35,28 @@ def track_url(request):
     return redirect(url)
 
 
+def get_category_list(max_results=0, starts_with=''):
+    cat_list = []
+    if starts_with:
+        cat_list = Category.objects.filter(name__istartswith=starts_with)
+    if max_results > 0:
+        if len(cat_list) > max_results:
+            cat_list = cat_list[:max_results]
+    return cat_list
+
+
+def suggest_category(request):
+    cat_list = []
+    starts_with = ''
+   
+    if request.method == 'GET':
+        starts_with = request.GET['suggestion']
+    cat_list = get_category_list(5, starts_with)
+
+
+    return render(request, 'rango/cats.html', {'cats': cat_list})
+
+
 
 # search feature
 
@@ -134,6 +156,23 @@ def restricted(request):
     return render(request, 'rango/restricted.html', {})
 
 
+
+@login_required
+def like_category(request):
+    cat_id = None
+    if request.method == 'GET':
+        cat_id = request.GET['category_id']
+    likes = 0
+    if cat_id:
+        cat = Category.objects.get(id=int(cat_id))
+        if cat:
+            likes = cat.likes + 1
+            cat.likes = likes
+            cat.save()
+    return HttpResponse(likes)
+
+
+
 def get_server_side_cookie(request, cookie, default_val=None):
     val = request.session.get(cookie)
     if not val:
@@ -153,6 +192,8 @@ def visitor_cookie_handler(request):
         request.session['last_visit'] = last_visit_cookie
 
     request.session['visits'] = visits
+
+
 
 
 
@@ -185,6 +226,8 @@ def index(request):
     #context_dict = {'visits': visit} 
     visitor_cookie_handler(request)
     context_dict['visits'] = request.session['visits']
+    print(request.GET)
+    print(type(request.GET))
     response = render(request, 'rango/index.html', context=context_dict)
     return response
 

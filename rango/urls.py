@@ -18,5 +18,7 @@ urlpatterns = [
      url(r'^password-change/$', 'django.contrib.auth.views.password_change', name='password_change'),
      url(r'^password-change/done/$', 'django.contrib.auth.views.password_change_done', name='password_change_done'),
      url(r'^search/$', views.search, name='search'),
-     url(r'^goto/$', views.track_url, name='goto')
+     url(r'^goto/$', views.track_url, name='goto'),
+     url(r'^like/$', views.like_category, name='like_category'),
+     url(r'^suggest/$', views.suggest_category, name="suggest_category")
 ]
